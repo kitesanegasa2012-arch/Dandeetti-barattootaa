@@ -2,87 +2,239 @@ import pandas as pd
 import streamlit as st
 
 # App Header & Creator Info
-st.title("📚 Minaaree Sadarkaa 1ffaa - Bara 2019")
-st.markdown("*Appii Qoodinsa Qabxii Barattootaa*")
-st.sidebar.info("Creator: **Kitesa Negasa (KN)**")
-
-# 1. Daataa galchuuf (Manual entry ykn CSV upload)
-option = st.sidebar.radio(
-    "Filannoo Galtee:", ("Galchee Dhuunfaa (Manual)", "Faayilii CSV Fe'uu")
+st.set_page_config(
+    page_title="Minaaree S.1ffaa - Offline App", page_icon="📚", layout="wide"
 )
 
-if option == "Galchee Dhuunfaa (Manual)":
-  st.subheader("Odeeffannoo Barataa Galchi")
+st.title("🏫 Mana Barumsaa Minaaree Sadarkaa 1ffaa")
+st.markdown("### Roostera Cuunfaa Barattootaa (Bara 2018/2019)")
+st.sidebar.info("Designed & Developed by **KN (Kitesa Negasa)**")
 
-  col1, col2 = st.columns(2)
-  with col1:
-    name = st.text_input("Maqaa Barataa")
-    gender = st.selectbox("Koorniyaa", ("Dhiira (M)", "Dhalaa (F)"))
-  with col2:
-    grade_section = st.text_input("Kutaa fi Daree (Fkn: Kutaa 5ffaa A)")
-    score = st.number_input("Qabxii (Dhibbeentaa - %)", min_value=0.0, max_value=100.0)
+# Daataa Roostera Cuunfaa Kallattiidhaan Koodii Keessatti Qabsiifame (Embedded Data)
+# Faayilii alaa malee intarneetii odoo hin gaafatin akka hojjetu godha.
+data = {
+    "LAKK": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+    ],
+    "Maqaa Barattootaa": [
+        "Abdataa katamaa Fayisaa",
+        "Abdiisaa Garramaa kabbabaa",
+        "Abdiisaa Masfinee Kabbuu",
+        "Addisuu Girmaa Dhugoo",
+        "Addisuu Girmaa Naggasaa",
+        "Arjummaa Dassaalenyi Qana'aa",
+        "Asheetuu Abdataa Addunyaa",
+        "Baqqalaa Asaffaa Mokonnon",
+        "Biiniyaam Dirribsaa Damee",
+        "Bokii Abarraa Addunyaa",
+        "Boontuu Asaffaa Birruu",
+        "Boontuu Biraanuu Abarraa",
+        "Boontuu Lammii Mul,isaa",
+        "BurteeSisuu Baqqalaa",
+        "BurteeTufaa caalaa",
+        "Burtukaan Abdataa Gaaddisaa",
+        "Caalii Fiqaaduu Addunyaa",
+        "Caaltuu Caalaa Qananii",
+        "Daamxoo Geetaachoo shifarraa",
+        "Daawwit Fiqaaduu Addunyaa",
+    ],
+    "Saala": [
+        "Dhi",
+        "Dhi",
+        "Dhi",
+        "Dhi",
+        "Dha",
+        "Dhi",
+        "Dhi",
+        "Dhi",
+        "Dhi",
+        "Dhi",
+        "Dha",
+        "Dha",
+        "Dha",
+        "Dha",
+        "Dha",
+        "Dha",
+        "Dha",
+        "Dha",
+        "Dhi",
+        "Dhi",
+    ],
+    "Afaan_Oromoo": [
+        67,
+        22,
+        52,
+        66.5,
+        20,
+        62.5,
+        81,
+        0,
+        58.5,
+        27.5,
+        56.5,
+        73,
+        65.5,
+        0,
+        20.5,
+        70.5,
+        23.5,
+        61.5,
+        55,
+        48,
+    ],
+    "Herrega": [
+        49.5,
+        18,
+        43.5,
+        46,
+        17,
+        44,
+        69.5,
+        0,
+        51.5,
+        17.5,
+        52,
+        50,
+        48.5,
+        0,
+        19.5,
+        67,
+        24,
+        53.5,
+        41,
+        36,
+    ],
+    "Ida'ama": [
+        551,
+        209,
+        503,
+        566,
+        233,
+        514.5,
+        663.5,
+        0,
+        539,
+        233.5,
+        546,
+        591.5,
+        584.5,
+        0,
+        232.5,
+        575,
+        256.5,
+        553.5,
+        505,
+        448,
+    ],
+    "Av_Qabxii": [
+        61.22,
+        23.22,
+        55.89,
+        62.89,
+        25.89,
+        57.17,
+        73.72,
+        0.0,
+        59.89,
+        25.94,
+        60.67,
+        65.72,
+        64.94,
+        0.0,
+        25.83,
+        63.89,
+        28.5,
+        61.5,
+        56.11,
+        49.78,
+    ],
+    "Yaada": [
+        "Darbee",
+        "Hin Darbine",
+        "Darbee",
+        "Darbee",
+        "Hin Darbine",
+        "Darbee",
+        "Darbee",
+        "Hin Darbine",
+        "Darbee",
+        "Hin Darbine",
+        "Darbitee",
+        "Darbitee",
+        "Darbitee",
+        "Hin Darbine",
+        "Hin Darbine",
+        "Darbitee",
+        "Hin Darbine",
+        "Darbitee",
+        "Darbee",
+        "Darbee",
+    ],
+}
 
-  if st.button("Ramadi fi Galmeessi"):
-    if name and grade_section:
-      # Sadarkaa irratti hundaa'uun qooduu
-      if score >= 80:
-        category = "🌟 Ciccimoo (High Achievers)"
-        st.success(
-            f"Barataa: {name} | Koorniyaa: {gender} | Kutaa: {grade_section} |"
-            f" Qabxii: {score}% -> {category}"
-        )
-      elif score >= 50:
-        category = "📊 Giddu-galeeyyii (Average)"
-        st.info(
-            f"Barataa: {name} | Koorniyaa: {gender} | Kutaa: {grade_section} |"
-            f" Qabxii: {score}% -> {category}"
-        )
-      else:
-        category = "⚠️ Suuta Barattoota (Needs Support)"
-        st.warning(
-            f"Barataa: {name} | Koorniyaa: {gender} | Kutaa: {grade_section} |"
-            f" Qabxii: {score}% -> {category}"
-        )
-    else:
-      st.error("Maaloo maqaa barataa fi kutaa guutaa!")
+df = pd.DataFrame(data)
 
-else:
-  st.subheader("Faayilii Qabxii (CSV) Mana Barumsichaa Fe'aa")
-  uploaded_file = st.file_uploader(
-      "Faayilii CSV (Maqaa, Koorniyaa, Kutaa, Qabxii qabu) filadhu", type=["csv"]
-  )
+# Sidebar Filter (Barbaacha Maqaa ykn Yaada)
+st.sidebar.header("Filannoo fi Barbaacha")
+search_name = st.sidebar.text_input("Maqaan Barataa Barbaadi:")
+status_filter = st.sidebar.selectbox(
+    "Haala Darbiinsaa (Status):",
+    ("Hunda", "Darbee / Darbitee", "Hin Darbine"),
+)
 
-  if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
-    st.write("Daataa Galfame:")
-    st.dataframe(df)
+# Filtarrii hojiirra oolchuu
+filtered_df = df.copy()
+if search_name:
+  filtered_df = filtered_df[
+      filtered_df["Maqaa Barattootaa"].str.contains(search_name, case=False)
+  ]
 
-    # Kolonni barbaachisoo jiraachuu isaanii mirkaneessuu
-    required_cols = ["Maqaa", "Koorniyaa", "Kutaa", "Qabxii"]
-    if all(col in df.columns for col in required_cols):
+if status_filter == "Darbee / Darbitee":
+  filtered_df = filtered_df[filtered_df["Yaada"].isin(["Darbee", "Darbitee"])]
+elif status_filter == "Hin Darbine":
+  filtered_df = filtered_df[filtered_df["Yaada"] == "Hin Darbine"]
 
-      def classify(score):
-        if score >= 80:
-          return "Ciccimoo"
-        elif score >= 50:
-          return "Giddu-galeeyyii"
-        else:
-          return "Suuta Barattoota"
+# Argisiisa Gabatee Daataa (DataFrame Display)
+st.subheader("Gabatee Qabxii Barattootaa")
+st.dataframe(filtered_df, use_container_width=True)
 
-      df["Garee (Category)"] = df["Qabxii"].apply(classify)
-
-      st.subheader("Bu'aa Ramaddii Barattootaa - Minaaree S.1ffaa (2019):")
-      st.dataframe(df)
-
-      # Gabaasa gabaabaa (Summary)
-      st.subheader("Gabaasa Waliigalaa Gareetiin")
-      st.write(df["Garee (Category)"].value_counts())
-    else:
-      st.error(
-          f"Faayilin kee kolonoota armaan gadii qabaachuu qaba:"
-          f" {required_cols}"
-      )
-
-# Footer info
+# Gabaasa Gabaabaa (Summary Statistics)
 st.markdown("---")
-st.text("Designed & Developed by KN (Kitesa Negasa)")
+st.subheader("📊 Gabaasa Gabaabaa (Summary)")
+col1, col2, col3 = st.columns(3)
+
+with col1:
+  st.metric(label="Waliigala Barattoota Argaman", value=len(df))
+with col2:
+  passed_count = len(df[df["Yaada"].isin(["Darbee", "Darbitee"])])
+  st.metric(label="Barattoota Darban", value=passed_count)
+with col3:
+  failed_count = len(df[df["Yaada"] == "Hin Darbine"])
+  st.metric(label="Barattoota Hin Darbinne", value=failed_count)
+
+# Footer
+st.markdown("---")
+st.markdown(
+    "<p style='text-align: center; color: gray;'>Created with ❤️ by KN (Kitesa"
+    " Negasa) | Minaaree Primary School</p>",
+    unsafe_allow_html=True,
+)
