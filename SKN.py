@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 import pandas as pd
 import streamlit as st
 
@@ -50,7 +49,6 @@ if uploaded_file is not None:
   if uploaded_file.name.endswith(".csv"):
     df = pd.read_csv(uploaded_file)
   else:
-    # Excel sheet dubbisuu
     xls = pd.ExcelFile(uploaded_file)
     sheet_name = st.selectbox("Sheet Excel filadhu:", xls.sheet_names)
     skip = st.number_input(
@@ -69,14 +67,12 @@ if uploaded_file is not None:
   st.subheader("⚙️ Qindaa'ina Gosa Barnootaa")
   all_columns = df.columns.tolist()
 
-  # Kolonoota maqaa fi saala addaan baasuu
   name_col = st.selectbox(
       "Kolonii Maqaa Barataa:",
       all_columns,
       index=1 if len(all_columns) > 1 else 0,
   )
 
-  # Gosa barnootaa filachuu (Multiple columns)
   subject_cols = st.multiselect(
       "Kolonoota Gosa Barnootaa (Qabxii qaban) filadhu:",
       [col for col in all_columns if col != name_col],
@@ -86,14 +82,11 @@ if uploaded_file is not None:
     st.markdown("---")
     st.subheader(f"📊 Bu'aa Qoodinsa {grade_level} - Gosa Barnootaan")
 
-    # Gosa barnootaan calaluun qooduu
     for subj in subject_cols:
       st.markdown(f"### 📖 Gosa Barnootaa: **{subj}**")
 
-      # Qabxii gara lakkaddaatti jijjiiruu
       scores = pd.to_numeric(df[subj], errors="coerce")
 
-      # Ramaddii: Ciccimoo (>=80), Giddu-galeeyyii (50-79.9), Suuta (<50)
       ciccimoo = df[scores >= 80]
       giddu = df[(scores >= 50) & (scores < 80)]
       suuta = df[(scores < 50) & (scores.notna())]
