@@ -1,0 +1,49 @@
+/* styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@300;400;700&display=swap');
+
+:root{
+  --primary:#375aeb;
+  --accent:#4b6cb7;
+  --bg:#f6f8fb;
+  --card:#ffffff;
+  --muted:#6b7280;
+}
+
+body, .stApp {
+  font-family: 'Noto Sans Ethiopic', sans-serif;
+}
+
+.cover{
+  background: linear-gradient(90deg, var(--accent), #0f172a);
+  color: white;
+  padding: 28px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.profile-img{
+  border-radius: 12px;
+  border: 3px solid rgba(255,255,255,0.12);
+}
+
+.stButton>button{
+  background: linear-gradient(90deg,#06b6d4,#3b82f6);
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+}
+
+/* Dataframe table tweak */
+.stDataFrame table {
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 12px 0;
+}
