@@ -1,4 +1,6 @@
 streamlit
+pillow
 pandas
-openpyxl
-matplotlib
+numpy
+easyocr
+opencv-python-headless
